@@ -1,0 +1,32 @@
+#banner_image {
+  width: 100%;
+  height: 250px;
+  background-image: url("/static/Banner_image.png");
+  background-size: cover;  /* Image covers the entire div */
+  background-repeat: no-repeat;  /* No tiling */
+  background-position: center;
+}
+
+#header_link_text {
+    background-color: lavender;
+}
+
+/* Change the color of the links */
+#header_link_text .nav-link {
+    color: darkslateblue !important; /* Color of header links */
+    font-weight: bold; /* Optional: makes the text bold */
+}
+
+/*Link color when hovered */
+#header_link_text .nav-link:hover {
+    color: mediumorchid !important; /* Change to a highlight color */
+}
+
+/* Change active link color for nav-pills */
+.nav-pills .nav-link.active {
+    background-color: white !important; /* Background for active tab */
+    color: white !important; /* Text color ????????????*/
+}
+#header_link_text .nav {
+    gap: 130px; /* Spacing between links */
+}
