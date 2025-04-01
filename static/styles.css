@@ -1,12 +1,14 @@
+/* Banner image styling */
 #banner_image {
   width: 100%;
   height: 250px;
-  background-image: url("/static/Banner_image.png");
+  background-color: #ffe5ec;
   background-size: cover;  /* Image covers the entire div */
   background-repeat: no-repeat;  /* No tiling */
   background-position: center;
 }
 
+/* Header link styling */
 #header_link_text {
     background-color: lavender;
 }
@@ -17,7 +19,7 @@
     font-weight: bold; /* Optional: makes the text bold */
 }
 
-/*Link color when hovered */
+/* Link color when hovered */
 #header_link_text .nav-link:hover {
     color: mediumorchid !important; /* Change to a highlight color */
 }
@@ -25,8 +27,79 @@
 /* Change active link color for nav-pills */
 .nav-pills .nav-link.active {
     background-color: white !important; /* Background for active tab */
-    color: white !important; /* Text color ????????????*/
+    color: white !important; /* Text color */
 }
+
 #header_link_text .nav {
     gap: 130px; /* Spacing between links */
+}
+
+/* Explore YouTube section styling */
+.card {
+    max-width: 250px; /* Make cards smaller */
+    margin: auto; /* Center the card */
+}
+
+/* Adjust thumbnail size */
+.card-img-top {
+    height: 140px; /* Smaller image */
+    object-fit: cover; /* Ensure aspect ratio remains */
+}
+
+/* Reduce text size */
+.card-title {
+    font-size: 14px;
+}
+
+/* Adjust button size */
+.btn {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+/* Three pictures under banner on home page */
+.figure-wrapper {
+    background-color: #333; /* Background color under all three images */
+    padding: 20px; /* Padding between figure elements and the background */
+    border-radius: 10px; /* Optional: rounded corners for the background */
+}
+
+.figure {
+    width: 100%; /* Makes sure the figure takes up full width of its parent column */
+    max-width: 300px; /* Max width of each figure */
+    margin: 0 auto; /* Centers the figure */
+    background-color: darkslateblue; /* Set background color*/
+    padding: 10px; /* Add padding to create space around the image and caption */
+    border-radius: 5px; /* Optional: rounded corners for the figure */
+}
+
+/* Adjusting the image size */
+.figure-img {
+    width: 100%; /* Make image responsive */
+    height: auto; /* Keep aspect ratio intact */
+    max-height: 200px; /* Maximum height for the image */
+    object-fit: cover; /* Ensures the image covers the container */
+}
+
+/* Adjusting caption */
+.figure-caption {
+    font-size: 14px; /* Smaller font size */
+    text-align: center; /* Center align the caption */
+    margin-top: 10px; /* Space between image and caption */
+    color: white; /* White color for text to contrast with black background */
+}
+
+/* Optional: Change the size of the card when hovering */
+.figure:hover {
+    transform: scale(1.05); /* Slightly enlarges the card on hover */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Footer */
+#footer {
+    background-color: lavender;
+    width: 100%; /* Ensure footer spans full width */
+    padding: 20px 0; /* Add some padding for spacing */
+    position: relative;
+    bottom: 0;
 }

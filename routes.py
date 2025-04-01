@@ -3,6 +3,8 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from werkzeug.security import check_password_hash
 from models import User, db
 from forms import LoginForm
+import os
+import requests
 
 # Initialize Flask-Login
 login_manager = LoginManager()
@@ -13,8 +15,22 @@ def load_user(user_id):
     return User.query.get(int(user_id))  # Fetch user by ID from the database
 
 # Home Route
+
 def home():
     return render_template("index.html")
+
+def explore():
+    query = request.args.get('query', 'sewing tutorials')  # Default search query
+    api_key = os.getenv('YOUTUBE_API_KEY')  # Get API key from .env
+
+    youtube_url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={query}&type=video&key={api_key}"
+    response = requests.get(youtube_url)
+    data = response.json()
+
+    print(data)  # DEBUG: Print API response in terminal
+
+    videos = data.get("items", [])  # Extract video list
+    return render_template("explore.html", videos=videos)
 
 # Login Route
 def login():
