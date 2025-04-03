@@ -1,8 +1,9 @@
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from werkzeug.security import check_password_hash
+from forms import LoginForm  # Import the LoginForm class
+
+from werkzeug.security import check_password_hash, generate_password_hash
 from models import User, db
-from forms import LoginForm
 import os
 import requests
 
@@ -15,7 +16,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))  # Fetch user by ID from the database
 
 # Home Route
-
 def home():
     return render_template("index.html")
 
@@ -31,6 +31,9 @@ def explore():
 
     videos = data.get("items", [])  # Extract video list
     return render_template("explore.html", videos=videos)
+
+def patterns():
+    return render_template("patterns.html")
 
 # Login Route
 def login():
@@ -49,9 +52,35 @@ def login():
 def logout():
     logout_user()
     flash('You have been logged out.', 'info')
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 # Protected Dashboard Route
 @login_required
 def dashboard():
-    return f"Welcome, {current_user.username}!"
+    return render_template("dashboard.html")
+
+# Signup Route
+def signup():
+    if request.method == 'POST':  # When the form is submitted via POST
+        username = request.form.get('username')  # Get the username from the form
+        email = request.form.get('email')  # Get the email from the form
+        password = request.form.get('password')  # Get the password from the form
+
+        # Validation: check if the username or email already exists in the database
+        existing_user = User.query.filter_by(email=email).first()  # Query for existing user by email
+        if existing_user:
+            flash("Email address already in use.", category='error')  # Display error if email is taken
+            return redirect(url_for('signup'))  # Redirect back to the signup page
+
+        # Hash the password before saving it in the database
+        hashed_password = generate_password_hash(password, method='sha256')
+
+        # Create a new user and save it to the database
+        new_user = User(username=username, email=email, password=hashed_password)
+        db.session.add(new_user)  # Add the new user to the session
+        db.session.commit()  # Commit the changes to the database
+
+        flash("Account created successfully!", category='success')  # Show success message
+        return redirect(url_for('login'))  # Redirect to the login page after signup
+
+    return render_template('signup.html')  # If it's a GET request, show the signup form

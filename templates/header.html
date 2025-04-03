@@ -12,12 +12,19 @@
     <header class="d-flex justify-content-center py-3" id="header_link_text">
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Patterns</a></li>
+        <li class="nav-item"><a href="/patterns" class="nav-link">Patterns</a></li>
         <li class="nav-item"><a href="/explore" class="nav-link">Explore</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Create</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Notifications</a></li>
-          <a href="/login"><button type="button" class="btn btn-outline-secondary">Login</button>
-</a>
+        <li class="nav-item"><a href="/dashboard" class="nav-link">My Dashboard</a></li>
+          <li class="nav-item"><a href="/signup" class="nav-link">Sign Up</a></li>
+{% if current_user.is_authenticated %}
+    <form action="{{ url_for('logout') }}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-outline-danger">Logout</button>
+    </form>
+{% else %}
+    <a href="{{ url_for('login') }}"><button type="button" class="btn btn-outline-secondary">Login</button></a>
+{% endif %}
+
       </ul>
     </header>
 </body>

@@ -2,7 +2,7 @@
 #banner_image {
   width: 100%;
   height: 250px;
-  background-color: #ffe5ec;
+  background-color: darkslateblue;
   background-size: cover;  /* Image covers the entire div */
   background-repeat: no-repeat;  /* No tiling */
   background-position: center;
@@ -68,7 +68,7 @@
     width: 100%; /* Makes sure the figure takes up full width of its parent column */
     max-width: 300px; /* Max width of each figure */
     margin: 0 auto; /* Centers the figure */
-    background-color: darkslateblue; /* Set background color*/
+    background-color: lavender; /* Set background color*/
     padding: 10px; /* Add padding to create space around the image and caption */
     border-radius: 5px; /* Optional: rounded corners for the figure */
 }
@@ -86,7 +86,7 @@
     font-size: 14px; /* Smaller font size */
     text-align: center; /* Center align the caption */
     margin-top: 10px; /* Space between image and caption */
-    color: white; /* White color for text to contrast with black background */
+    color: darkslateblue; /* text color*/
 }
 
 /* Optional: Change the size of the card when hovering */
@@ -96,10 +96,24 @@
 }
 
 /* Footer */
+
+/* Footer */
 #footer {
-    background-color: lavender;
-    width: 100%; /* Ensure footer spans full width */
-    padding: 20px 0; /* Add some padding for spacing */
-    position: relative;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: lavender;
+    padding: 20px 0; /* Add padding for space inside the footer */
+    text-align: center; /* Center the text inside the footer */
+    z-index: 10; /* Ensure footer stays above other content if needed */
+}
+
+--------------------
+/* website body */
+body {
+    background-image: url('/static/purple_fabric.jpg'); /* Ensure the leading '/' */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
